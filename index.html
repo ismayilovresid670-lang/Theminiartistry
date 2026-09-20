@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Mini Artistry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,300..600;1,7..72,300..500&amp;family=Source+Sans+3:wght@400;500;600&amp;display=swap">
+<style id="css">
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --paper:#ffffff;
+  --ink:#23252b;
+  --muted:#62656e;
+  --hair:#e3e3e6;
+  --cobalt:#2c4a9a;
+  --red:#d1432d;
+  --serif:'Literata',Georgia,'Times New Roman',serif;
+  --sans:'Source Sans 3',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  color-scheme:light;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:#fff;color:var(--ink);font:400 17px/1.55 var(--sans)}
+img{max-width:100%}
+:focus-visible{outline:2px solid var(--cobalt);outline-offset:3px}
+.wrap{max-width:1160px;margin:0 auto;padding-left:clamp(20px,5vw,56px);padding-right:clamp(20px,5vw,56px)}
+
+/* header */
+.top{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:10px 28px;padding-top:26px;padding-bottom:26px}
+.brand{font:500 20px/1 var(--serif);letter-spacing:-.01em;color:var(--ink);text-decoration:none}
+.top nav{display:flex;gap:22px;font-size:15px}
+.top nav a{color:var(--muted);text-decoration:none}
+.top nav a:hover{color:var(--ink)}
+
+/* owner bar */
+.owner{border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);padding:10px 0;font-size:15px}
+.owner .wrap{display:flex;flex-wrap:wrap;gap:6px 20px;align-items:center}
+.owner b{font-weight:600}
+.note{color:var(--muted)}
+.lnk{background:none;border:0;padding:0;font:inherit;color:var(--cobalt);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.lnk.quiet{color:var(--muted)}
+.lnk:hover{color:var(--ink)}
+
+/* intro */
+.intro{padding:clamp(48px,10vw,120px) 0 clamp(44px,8vw,96px)}
+.intro h1{font:300 clamp(2.1rem,6.4vw,4rem)/1.08 var(--serif);letter-spacing:-.02em;margin:0 0 20px;max-width:14ch}
+.intro p{margin:0;max-width:34ch;color:var(--muted);font-size:1.125rem}
+
+/* gallery header */
+.bar{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px 24px;border-bottom:1px solid var(--hair);padding-bottom:12px;margin-bottom:clamp(32px,5vw,60px)}
+.bar h2{font:400 1.375rem/1.2 var(--serif);margin:0}
+.tabs{display:flex;gap:18px}
+.tab{background:none;border:0;border-bottom:1px solid transparent;padding:4px 0;font:inherit;font-size:15px;color:var(--muted);cursor:pointer}
+.tab[aria-pressed=true]{color:var(--ink);border-bottom-color:var(--ink)}
+
+/* the wall */
+.wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:64px 40px}
+.work{min-width:0}
+.frame{display:grid;place-items:center;width:100%;aspect-ratio:1/1;padding:0;border:0;background:none;cursor:zoom-in}
+.mat{display:block;--inset:10%;width:calc((100% - 2 * var(--inset)) * min(1, var(--ar, 1)));padding:8px;border:1px solid var(--hair);background:#fff}
+.mat img{display:block;width:100%;height:auto;aspect-ratio:var(--ar,1)}
+.label{margin:16px 10% 0}
+.l1{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.l1 h3{font:500 1.125rem/1.3 var(--serif);margin:0}
+.tag{font:400 12px/1.4 var(--sans);color:var(--muted);border:1px solid var(--hair);padding:0 6px;margin-left:8px;vertical-align:2px;white-space:nowrap}
+.price{font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.sold{display:inline-flex;align-items:center;gap:7px;color:var(--muted);font-size:15px;white-space:nowrap}
+.sold i{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--red)}
+.facts{margin:10px 0 0;display:grid;gap:3px;font-size:14px}
+.facts div{display:grid;grid-template-columns:64px 1fr;gap:10px}
+.facts dt{color:#767982}
+.facts dd{margin:0;color:var(--muted)}
+.acts{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:12px;font-size:15px}
+.order{color:var(--cobalt);text-underline-offset:3px}
+.empty{padding:40px 0;color:var(--muted)}
+
+/* about + contact */
+.sec{margin-top:clamp(72px,11vw,128px);border-top:1px solid var(--hair);padding-top:36px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:48px}
+.sec h2{font:400 1.375rem/1.2 var(--serif);margin:0 0 16px}
+.prose{max-width:50ch}
+.prose p{margin:0 0 1em;font-family:var(--serif);font-size:1.0625rem;line-height:1.7}
+.contact{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:8px}
+.contact li{display:grid;grid-template-columns:96px 1fr;gap:10px}
+.contact span{color:var(--muted)}
+.contact a{color:var(--cobalt);text-underline-offset:3px;overflow-wrap:anywhere}
+footer{padding-top:72px;padding-bottom:56px;color:var(--muted);font-size:14px}
+
+/* dialogs */
+dialog{border:1px solid var(--hair);padding:0;width:100%;max-width:min(94vw,760px);max-height:92vh;background:#fff;color:var(--ink);overflow:auto;box-shadow:0 24px 70px -24px rgba(35,37,43,.28)}
+dialog::backdrop{background:rgba(255,255,255,.9)}
+.dlg-in{padding:clamp(20px,4vw,36px)}
+.dlg-top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:14px}
+.dlg-h{font:400 1.25rem/1.2 var(--serif);margin:0}
+.lb-frame{display:grid;place-items:center;padding:clamp(8px,3vw,28px) 0 clamp(16px,3vw,28px)}
+.lb-mat{display:block;padding:10px;border:1px solid var(--hair)}
+.lb-mat img{display:block;max-width:100%;max-height:56vh;width:auto;height:auto}
+.lb-info .l1 h3{font-size:1.375rem}
+.desc{font-family:var(--serif);line-height:1.7;margin:18px 0 0;max-width:52ch}
+.btn{display:inline-block;font:600 16px/1.2 var(--sans);background:var(--cobalt);color:#fff;border:1px solid var(--cobalt);padding:12px 22px;cursor:pointer;text-decoration:none}
+.btn.ghost{background:#fff;color:var(--ink);border-color:#cfd0d5}
+.btn:hover{filter:brightness(1.08)}
+.lb-info .btn{margin-top:22px}
+.field{display:grid;gap:6px;margin-bottom:16px}
+.field label{font-size:14px;color:var(--muted)}
+.field input[type=text],.field input:not([type]),.field input[type=file],.field textarea{font:inherit;color:var(--ink);background:#fff;border:1px solid #cfd0d5;border-radius:0;padding:10px 12px;width:100%}
+.field.check label{display:flex;align-items:center;gap:10px;color:var(--ink);font-size:16px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+@media (max-width:480px){.two{grid-template-columns:1fr}}
+#f-prev img{display:block;max-height:140px;width:auto;margin-top:8px;border:1px solid var(--hair);padding:4px}
+.msg{min-height:1.5em;margin:0 0 12px;color:var(--muted);font-size:15px}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="application/json" id="data">{"settings":{"about":"Sulu boya ilə 6–8 sm ölçüdə miniatür rəsmlər çəkirəm. Hər rəsm əllə çəkilib və tək nüsxədir.","currency":"₼","whatsapp":"","instagram":"","email":""},"paintings":[{"id":"s1","sample":true,"seed":1,"w":600,"h":800,"title":"Səhər dumanı","size":"6 × 8 sm","price":"35","date":"Sentyabr 2026","materials":"Sulu boya, pambıq kağız","description":"Bu, nümunə rəsmdir. Öz rəsmlərini əlavə etdikdən sonra silə bilərsən.","sold":false},{"id":"s2","sample":true,"seed":2,"w":800,"h":600,"title":"Şəftali budağı","size":"8 × 6 sm","price":"40","date":"Avqust 2026","materials":"Sulu boya, qara tuş","description":"","sold":false},{"id":"s3","sample":true,"seed":3,"w":700,"h":700,"title":"Kiçik göl","size":"7 × 7 sm","price":"30","date":"İyul 2026","materials":"Sulu boya","description":"","sold":true}]}</script>
+<script id="app">
+(function () {
+  'use strict';
+
+  var FONT_URL = 'https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,300..600;1,7..72,300..500&family=Source+Sans+3:wght@400;500;600&display=swap';
+
+  var state = JSON.parse(document.getElementById('data').textContent);
+  var root = document.getElementById('root');
+  var canEdit = false;
+  var filter = 'all';
+  var armed = null;
+  var note = '';
+  var editing = null;
+  var pending = null;
+
+  var dlg = document.createElement('dialog');
+  dlg.id = 'dlg';
+  document.body.appendChild(dlg);
+
+  /* ---------- helpers ---------- */
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function cfg() { return state.settings; }
+  function find(id) { return state.paintings.filter(function (p) { return p.id === id; })[0]; }
+
+  var PAL = [
+    ['#3e5fb0', '#e59aa8', '#f3d9a4'],
+    ['#5f9a6b', '#e2b95a', '#9cc4d6'],
+    ['#5a6380', '#f0a98a', '#c9b6d9'],
+    ['#c76a4a', '#e9c46a', '#7fb2a8']
+  ];
+  function placeholder(seed, w, h) {
+    var p = PAL[seed % PAL.length];
+    var s = seed * 9301 + 49297;
+    function r() { s = (s * 9301 + 49297) % 233280; return s / 233280; }
+    var blobs = '';
+    for (var i = 0; i < 5; i++) {
+      blobs += '<ellipse cx="' + Math.round(r() * w) + '" cy="' + Math.round(r() * h) +
+        '" rx="' + Math.round(w * (0.18 + r() * 0.28)) + '" ry="' + Math.round(h * (0.16 + r() * 0.26)) +
+        '" fill="' + p[i % 3] + '" opacity="' + (0.45 + r() * 0.4).toFixed(2) + '"/>';
+    }
+    var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + w + ' ' + h + '" width="' + w + '" height="' + h + '">' +
+      '<defs><filter id="b" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="' + Math.round(w / 14) + '"/></filter></defs>' +
+      '<rect width="100%" height="100%" fill="#fbfaf7"/><g filter="url(#b)">' + blobs + '</g></svg>';
+    return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+  }
+  function imgOf(p) { return p.image || placeholder(p.seed || 1, p.w || 600, p.h || 800); }
+  function ratio(p) { return ((p.w || 600) / (p.h || 800)).toFixed(4); }
+  function priceText(p) {
+    if (p.price !== '' && p.price != null) return esc(p.price) + ' ' + esc(cfg().currency || '₼');
+    return 'Qiyməti soruş';
+  }
+  function factsHtml(p) {
+    var rows = [['Ölçü', p.size], ['Çəkilib', p.date], ['Material', p.materials]].filter(function (r) { return r[1]; });
+    if (!rows.length) return '';
+    return '<dl class="facts">' + rows.map(function (r) {
+      return '<div><dt>' + r[0] + '</dt><dd>' + esc(r[1]) + '</dd></div>';
+    }).join('') + '</dl>';
+  }
+  function orderHref(p) {
+    var s = cfg();
+    var msg = 'Salam! “' + p.title + '” rəsminə maraq göstərirəm.';
+    var digits = (s.whatsapp || '').replace(/\D/g, '');
+    if (digits) return 'https://wa.me/' + digits + '?text=' + encodeURIComponent(msg);
+    if (s.email) return 'mailto:' + s.email + '?subject=' + encodeURIComponent(p.title) + '&body=' + encodeURIComponent(msg);
+    if (s.instagram) return 'https://instagram.com/' + encodeURIComponent(s.instagram.replace(/^@/, ''));
+    return '#contact';
+  }
+  function orderAttrs(p) {
+    var h = orderHref(p);
+    return 'href="' + esc(h) + '"' + (h.charAt(0) === '#' ? '' : ' target="_blank" rel="noopener"');
+  }
+
+  /* ---------- render ---------- */
+  function card(p) {
+    var sold = !!p.sold;
+    var owner = '';
+    if (canEdit) {
+      owner =
+        '<button class="lnk quiet" type="button" data-act="edit" data-id="' + esc(p.id) + '">Düzəlt</button>' +
+        '<button class="lnk quiet" type="button" data-act="toggle" data-id="' + esc(p.id) + '">' + (sold ? 'Yenidən satışa qoy' : 'Satıldı') + '</button>' +
+        '<button class="lnk quiet" type="button" data-act="del" data-id="' + esc(p.id) + '">' + (armed === p.id ? 'Əminsən? Sil' : 'Sil') + '</button>';
+    }
+    return '<article class="work">' +
+      '<button class="frame" type="button" data-act="open" data-id="' + esc(p.id) + '" style="--ar:' + ratio(p) + '" aria-label="' + esc(p.title) + ' rəsmini böyüt">' +
+      '<span class="mat"><img src="' + esc(imgOf(p)) + '" alt="' + esc(p.title) + '"></span></button>' +
+      '<div class="label">' +
+      '<div class="l1"><h3>' + esc(p.title) + (p.sample ? '<span class="tag">nümunə</span>' : '') + '</h3>' +
+      (sold ? '<span class="sold"><i></i>Satılıb</span>' : '<span class="price">' + priceText(p) + '</span>') + '</div>' +
+      factsHtml(p) +
+      '<div class="acts">' + (sold ? '' : '<a class="order" ' + orderAttrs(p) + '>Sifariş et</a>') + owner + '</div>' +
+      '</div></article>';
+  }
+
+  function contactHtml() {
+    var s = cfg(), items = [];
+    var digits = (s.whatsapp || '').replace(/\D/g, '');
+    var ig = (s.instagram || '').replace(/^@/, '');
+    if (digits) items.push(['WhatsApp', 'https://wa.me/' + digits, s.whatsapp]);
+    if (ig) items.push(['Instagram', 'https://instagram.com/' + encodeURIComponent(ig), '@' + ig]);
+    if (s.email) items.push(['E-poçt', 'mailto:' + s.email, s.email]);
+    if (!items.length) {
+      return '<p class="note">' + (canEdit ? 'Əlaqə məlumatlarını yuxarıdakı “Sayt məlumatları” bölməsindən əlavə et.' : 'Əlaqə məlumatları tezliklə əlavə olunacaq.') + '</p>';
+    }
+    return '<ul class="contact">' + items.map(function (i) {
+      return '<li><span>' + i[0] + '</span><a href="' + esc(i[1]) + '" target="_blank" rel="noopener">' + esc(i[2]) + '</a></li>';
+    }).join('') + '</ul>';
+  }
+
+  function render() {
+    var list = state.paintings.filter(function (p) {
+      return filter === 'all' || (filter === 'sale' && !p.sold) || (filter === 'sold' && p.sold);
+    });
+    var hasSample = state.paintings.some(function (p) { return p.sample; });
+    function tab(f, label) {
+      return '<button class="tab" type="button" data-act="filter" data-f="' + f + '" aria-pressed="' + (filter === f) + '">' + label + '</button>';
+    }
+    var about = String(cfg().about || '').split(/\n\s*\n/).map(function (t) {
+      return '<p>' + esc(t).replace(/\n/g, '<br>') + '</p>';
+    }).join('');
+    var empty = '<p class="empty">Bu bölmədə hələ rəsm yoxdur.' +
+      (canEdit ? ' <button class="lnk" type="button" data-act="add">Rəsm əlavə et</button>' : '') + '</p>';
+
+    root.innerHTML =
+      '<div class="wrap"><header class="top">' +
+      '<a class="brand" href="#">The Mini Artistry</a>' +
+      '<nav aria-label="Naviqasiya"><a href="#works">Rəsmlər</a><a href="#about">Haqqında</a><a href="#contact">Əlaqə</a></nav>' +
+      '</header></div>' +
+      (canEdit ?
+        '<div class="owner"><div class="wrap"><b>Redaktə rejimi</b>' +
+        '<button class="lnk" type="button" data-act="add">Rəsm əlavə et</button>' +
+        '<button class="lnk" type="button" data-act="settings">Sayt məlumatları</button>' +
+        (hasSample ? '<button class="lnk quiet" type="button" data-act="clear-samples">Nümunələri sil</button>' : '') +
+        '<span class="note" id="note" role="status">' + esc(note) + '</span></div></div>' : '') +
+      '<main class="wrap">' +
+      '<section class="intro"><h1>Ovuc boyda sulu boya rəsmləri</h1>' +
+      '<p>Hər biri 6–8 santimetrlik, əllə çəkilmiş, təkrarı olmayan miniatürlər.</p></section>' +
+      '<section id="works" aria-labelledby="works-h">' +
+      '<div class="bar"><h2 id="works-h">Rəsmlər</h2><div class="tabs">' + tab('all', 'Hamısı') + tab('sale', 'Satışda') + tab('sold', 'Satılıb') + '</div></div>' +
+      (list.length ? '<div class="wall">' + list.map(card).join('') + '</div>' : empty) +
+      '</section>' +
+      '<section class="sec">' +
+      '<div id="about" class="prose"><h2>Haqqında</h2>' + about + '</div>' +
+      '<div id="contact"><h2>Əlaqə</h2><p style="margin:0">Bir rəsm xoşuna gəlibsə, mənə yaz və rəsmin adını qeyd et.</p>' + contactHtml() + '</div>' +
+      '</section>' +
+      '</main>' +
+      '<footer class="wrap">© 2026 The Mini Artistry</footer>';
+  }
+
+  /* ---------- dialogs ---------- */
+  function openLightbox(id) {
+    var p = find(id);
+    if (!p) return;
+    dlg.setAttribute('aria-label', p.title);
+    dlg.innerHTML =
+      '<div class="dlg-in">' +
+      '<div class="dlg-top"><span></span><button class="lnk quiet" type="button" data-act="close">Bağla</button></div>' +
+      '<div class="lb-frame"><span class="lb-mat"><img src="' + esc(imgOf(p)) + '" alt="' + esc(p.title) + '"></span></div>' +
+      '<div class="lb-info">' +
+      '<div class="l1"><h3>' + esc(p.title) + '</h3>' +
+      (p.sold ? '<span class="sold"><i></i>Satılıb</span>' : '<span class="price">' + priceText(p) + '</span>') + '</div>' +
+      factsHtml(p) +
+      (p.description ? '<p class="desc">' + esc(p.description).replace(/\n/g, '<br>') + '</p>' : '') +
+      (p.sold ? '' : '<a class="btn" ' + orderAttrs(p) + '>Sifariş et</a>') +
+      '</div></div>';
+    dlg.showModal();
+  }
+
+  function setMsg(t) {
+    var m = dlg.querySelector('#f-msg');
+    if (m) m.textContent = t;
+    else toast(t);
+  }
+
+  function openForm(id) {
+    editing = id ? find(id) : null;
+    pending = null;
+    var p = editing || {};
+    dlg.setAttribute('aria-label', editing ? 'Rəsmi düzəlt' : 'Yeni rəsm');
+    dlg.innerHTML =
+      '<div class="dlg-in">' +
+      '<div class="dlg-top"><h3 class="dlg-h">' + (editing ? 'Rəsmi düzəlt' : 'Yeni rəsm') + '</h3><button class="lnk quiet" type="button" data-act="close">Bağla</button></div>' +
+      '<div class="field"><label for="f-file">Şəkil</label><input id="f-file" type="file" accept="image/*"><div id="f-prev">' +
+      (editing ? '<img src="' + esc(imgOf(p)) + '" alt="">' : '') + '</div></div>' +
+      '<div class="field"><label for="f-title">Rəsmin adı</label><input id="f-title" type="text" maxlength="80" value="' + esc(p.title) + '"></div>' +
+      '<div class="two"><div class="field"><label for="f-size">Ölçü</label><input id="f-size" type="text" placeholder="məs. 7 × 9 sm" value="' + esc(p.size) + '"></div>' +
+      '<div class="field"><label for="f-price">Qiymət (' + esc(cfg().currency || '₼') + ')</label><input id="f-price" type="text" inputmode="decimal" placeholder="35" value="' + esc(p.price) + '"></div></div>' +
+      '<div class="field"><label for="f-date">Nə zaman çəkilib</label><input id="f-date" type="text" placeholder="məs. Sentyabr 2026" value="' + esc(p.date) + '"></div>' +
+      '<div class="field"><label for="f-mat">Nələrdən istifadə olunub</label><input id="f-mat" type="text" placeholder="məs. Sulu boya, pambıq kağız" value="' + esc(p.materials) + '"></div>' +
+      '<div class="field"><label for="f-desc">Qısa təsvir (istəyə bağlı)</label><textarea id="f-desc" rows="3">' + esc(p.description) + '</textarea></div>' +
+      '<div class="field check"><label><input type="checkbox" id="f-sold"' + (p.sold ? ' checked' : '') + '> Satılıb</label></div>' +
+      '<p class="msg" id="f-msg" role="status"></p>' +
+      '<div class="btns"><button class="btn" type="button" data-act="save-painting">Yadda saxla</button><button class="btn ghost" type="button" data-act="close">Ləğv et</button></div>' +
+      '</div>';
+    dlg.showModal();
+  }
+
+  function openSettings() {
+    var s = cfg();
+    dlg.setAttribute('aria-label', 'Sayt məlumatları');
+    dlg.innerHTML =
+      '<div class="dlg-in">' +
+      '<div class="dlg-top"><h3 class="dlg-h">Sayt məlumatları</h3><button class="lnk quiet" type="button" data-act="close">Bağla</button></div>' +
+      '<div class="field"><label for="s-about">Haqqında mətni</label><textarea id="s-about" rows="5">' + esc(s.about) + '</textarea></div>' +
+      '<div class="field"><label for="s-wa">WhatsApp nömrəsi (ölkə kodu ilə)</label><input id="s-wa" type="text" inputmode="tel" placeholder="994501234567" value="' + esc(s.whatsapp) + '"></div>' +
+      '<div class="field"><label for="s-ig">Instagram istifadəçi adı</label><input id="s-ig" type="text" placeholder="@istifadeci" value="' + esc(s.instagram) + '"></div>' +
+      '<div class="field"><label for="s-mail">E-poçt</label><input id="s-mail" type="text" inputmode="email" placeholder="ad@mail.com" value="' + esc(s.email) + '"></div>' +
+      '<div class="field"><label for="s-cur">Valyuta simvolu</label><input id="s-cur" type="text" maxlength="4" value="' + esc(s.currency || '₼') + '"></div>' +
+      '<p class="msg" id="f-msg" role="status"></p>' +
+      '<div class="btns"><button class="btn" type="button" data-act="save-settings">Yadda saxla</button><button class="btn ghost" type="button" data-act="close">Ləğv et</button></div>' +
+      '</div>';
+    dlg.showModal();
+  }
+
+  /* ---------- images ---------- */
+  function readImage(file) {
+    return new Promise(function (resolve, reject) {
+      var fr = new FileReader();
+      fr.onerror = function () { reject(new Error('read')); };
+      fr.onload = function () {
+        var img = new Image();
+        img.onerror = function () { reject(new Error('decode')); };
+        img.onload = function () {
+          var max = 1000;
+          var w = img.naturalWidth, h = img.naturalHeight;
+          var k = Math.min(1, max / Math.max(w, h));
+          w = Math.max(1, Math.round(w * k));
+          h = Math.max(1, Math.round(h * k));
+          var c = document.createElement('canvas');
+          c.width = w; c.height = h;
+          var x = c.getContext('2d');
+          x.fillStyle = '#fff';
+          x.fillRect(0, 0, w, h);
+          x.drawImage(img, 0, 0, w, h);
+          resolve({ image: c.toDataURL('image/jpeg', 0.84), w: w, h: h });
+        };
+        img.src = fr.result;
+      };
+      fr.readAsDataURL(file);
+    });
+  }
+
+  /* ---------- saving (publishes a new version of this page) ---------- */
+  function buildDoc() {
+    var json = JSON.stringify(state).replace(/</g, '\\u003c');
+    var css = document.getElementById('css').textContent;
+    var app = document.getElementById('app').textContent;
+    var S = '<' + 'script', E = '</' + 'script>';
+    return '<!doctype html>\n<html lang="az">\n<head>\n<meta charset="utf-8">\n' +
+      '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n' +
+      '<title>The Mini Artistry</title>\n' +
+      '<link rel="preconnect" href="https://fonts.googleapis.com">\n' +
+      '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n' +
+      '<link rel="stylesheet" href="' + FONT_URL.replace(/&/g, '&amp;') + '">\n' +
+      '<style id="css">' + css + '</style>\n</head>\n<body>\n<div id="root"></div>\n' +
+      S + ' type="application/json" id="data">' + json + E + '\n' +
+      S + ' id="app">' + app + E + '\n</body>\n</html>';
+  }
+
+  function toast(t) {
+    note = t;
+    var n = document.getElementById('note');
+    if (n) n.textContent = t;
+  }
+
+  async function persist(say) {
+    var art = null;
+    try {
+      if (window.claude && window.claude.use) art = await window.claude.use('artifact');
+    } catch (e) { art = null; }
+    if (!art) { say('Saxlama bu görünüşdə mümkün deyil.'); return false; }
+    say('Yadda saxlanılır…');
+    try {
+      await art.publish(buildDoc());
+      return true;
+    } catch (e) {
+      var c = e && e.code;
+      if (c === 'conflict') say('Səhifə yeniləndi. Bir daha yoxla.');
+      else if (c === 'too_large') say('Səhifə çox böyüyüb. Bəzi rəsmləri silməlisən.');
+      else if (c === 'rate_limited') say('Çox tez-tez saxlanılır. Bir az gözlə.');
+      else if (c === 'not_writer' || c === 'not_granted' || c === 'consent_required') say('Bu hesabla düzəliş etmək mümkün deyil.');
+      else say('Saxlanmadı. Bir az sonra yenidən yoxla.');
+      return false;
+    }
+  }
+
+  async function commit(mutate, say) {
+    var before = JSON.stringify(state);
+    mutate();
+    var ok = await persist(say || toast);
+    if (!ok) {
+      state = JSON.parse(before);
+      render();
+    }
+    return ok;
+  }
+
+  async function savePainting() {
+    function val(id) { return dlg.querySelector('#' + id).value.trim(); }
+    var title = val('f-title');
+    if (!title) { setMsg('Rəsmin adını yaz.'); return; }
+    if (!editing && !pending) { setMsg('Əvvəlcə şəkil seç.'); return; }
+    var id = editing ? editing.id : 'p' + Date.now().toString(36);
+    var target = editing;
+    var ok = await commit(function () {
+      var rec = target ? find(id) : { id: id };
+      rec.title = title;
+      rec.size = val('f-size');
+      rec.price = val('f-price').replace(',', '.');
+      rec.date = val('f-date');
+      rec.materials = val('f-mat');
+      rec.description = dlg.querySelector('#f-desc').value.trim();
+      rec.sold = dlg.querySelector('#f-sold').checked;
+      delete rec.sample;
+      if (pending) {
+        rec.image = pending.image; rec.w = pending.w; rec.h = pending.h;
+        delete rec.seed;
+      }
+      if (!target) state.paintings.unshift(rec);
+    }, setMsg);
+    if (!ok) editing = target ? find(id) : null;
+  }
+
+  async function saveSettings() {
+    function val(id) { return dlg.querySelector('#' + id).value.trim(); }
+    await commit(function () {
+      var s = state.settings;
+      s.about = dlg.querySelector('#s-about').value.trim();
+      s.whatsapp = val('s-wa');
+      s.instagram = val('s-ig');
+      s.email = val('s-mail');
+      s.currency = val('s-cur') || '₼';
+    }, setMsg);
+  }
+
+  /* ---------- events ---------- */
+  function onClick(e) {
+    if (e.target === dlg) { dlg.close(); return; }
+    var t = e.target.closest ? e.target.closest('[data-act]') : null;
+    if (!t) return;
+    var act = t.getAttribute('data-act');
+    var id = t.getAttribute('data-id');
+    if (act === 'filter') { filter = t.getAttribute('data-f'); armed = null; render(); }
+    else if (act === 'open') openLightbox(id);
+    else if (act === 'close') dlg.close();
+    else if (act === 'add') openForm(null);
+    else if (act === 'edit') openForm(id);
+    else if (act === 'settings') openSettings();
+    else if (act === 'toggle') commit(function () { var p = find(id); if (p) p.sold = !p.sold; });
+    else if (act === 'del') {
+      if (armed === id) {
+        armed = null;
+        commit(function () { state.paintings = state.paintings.filter(function (p) { return p.id !== id; }); });
+      } else { armed = id; render(); }
+    }
+    else if (act === 'clear-samples') commit(function () { state.paintings = state.paintings.filter(function (p) { return !p.sample; }); });
+    else if (act === 'save-painting') savePainting();
+    else if (act === 'save-settings') saveSettings();
+  }
+  root.addEventListener('click', onClick);
+  dlg.addEventListener('click', onClick);
+
+  dlg.addEventListener('change', async function (e) {
+    if (!e.target || e.target.id !== 'f-file') return;
+    var f = e.target.files && e.target.files[0];
+    if (!f) return;
+    setMsg('Şəkil hazırlanır…');
+    try {
+      pending = await readImage(f);
+      var prev = dlg.querySelector('#f-prev');
+      if (prev) prev.innerHTML = '<img alt="" src="' + esc(pending.image) + '">';
+      setMsg('');
+    } catch (err) {
+      pending = null;
+      setMsg('Şəkil oxunmadı. Başqa şəkil seç.');
+    }
+  });
+
+  /* ---------- start ---------- */
+  render();
+
+  (async function detectOwner() {
+    try {
+      if (!(window.claude && window.claude.use)) return;
+      var u = await window.claude.use('user');
+      if (u && (await u.canEdit())) { canEdit = true; render(); }
+    } catch (e) { /* visitors just see the shop */ }
+  })();
+})();
+</script>
+</body>
+</html>
